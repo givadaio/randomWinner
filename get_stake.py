@@ -4,7 +4,7 @@ import json
 import requests
 import sys
 
-TOKEN = "BLOCKFROST TOKEN"
+TOKEN = "BLOCKFROST API TOKEN"
 
 headers = {"project_id": TOKEN}
 
@@ -28,7 +28,7 @@ def getStakeAmount(accounts, pool_id, epoch):
         for snapshot in history:
             if snapshot["active_epoch"] == epoch:
                 if snapshot["pool_id"] == pool_id:
-                    amounts[address] = snapshot["amount"]
+                    amounts[address] = int(int(snapshot["amount"])/1000000)
 
     return amounts
 
